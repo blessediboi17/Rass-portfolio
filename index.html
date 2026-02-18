@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Academy School System (RASS)</title>
+    <title>Royal Academy School System | RASS Liberia</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --royal-gold: #D4AF37;
             --soft-gold: #fdf5e6;
             --deep-gold: #996515;
-            --text-dark: #2c2c2c;
+            --text-dark: #1a1a1a;
             --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,121 +20,185 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--soft-gold);
+            background-color: var(--white);
             color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* Hero Section with subtle motion */
         .hero {
-            height: 100vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(212,175,55,0.2) 100%);
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
             padding: 20px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--deep-gold);
             margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
         }
 
-        .hero p { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: #666; }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* Founder Section - Motion Scroll */
-        .founder-section {
-            padding: 100px 10%;
-            display: flex;
+        /* Founder Spotlight */
+        .section-padding { padding: 100px 10%; }
+        
+        .founder-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
             align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            background: var(--white);
         }
 
-        .founder-img {
-            flex: 1;
-            min-width: 300px;
-            height: 450px;
-            background: url('https://via.placeholder.com/400x500?text=Founder+Image') center/cover;
+        .founder-image-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .founder-image-wrapper img {
+            width: 100%;
             border-radius: 20px;
-            border: 8px solid var(--soft-gold);
-            box-shadow: 20px 20px 0px var(--royal-gold);
+            box-shadow: 30px 30px 0px var(--soft-gold);
+            transition: 0.5s;
         }
 
-        .founder-text { flex: 1; min-width: 300px; }
-        .founder-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
+        .founder-image-wrapper:hover img {
+            transform: translate(10px, 10px);
+            box-shadow: 15px 15px 0px var(--royal-gold);
+        }
 
-        /* Gallery - Grid Layout */
-        .gallery-section { padding: 80px 10%; text-align: center; }
+        .founder-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--deep-gold);
+        }
+
+        /* Teacher Section */
+        .teachers { background: var(--soft-gold); text-align: center; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .teacher-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            border-bottom: 5px solid var(--royal-gold);
+            transition: 0.3s;
+        }
+
+        .teacher-card:hover { transform: translateY(-10px); }
+
+        /* Gallery */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 300px;
             gap: 15px;
-            margin-top: 40px;
         }
 
         .gallery-item {
-            height: 250px;
-            background-color: #ddd;
-            border-radius: 12px;
             overflow: hidden;
+            border-radius: 15px;
             position: relative;
-            transition: transform 0.3s ease;
         }
 
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-        .gallery-item:hover { transform: scale(1.03); cursor: pointer; }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-        /* Footer */
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Modern Footer */
         footer {
-            background: var(--text-dark);
+            background: #111;
             color: var(--soft-gold);
-            padding: 60px 10%;
+            padding: 80px 10% 40px;
             text-align: center;
         }
 
-        .footer-line { width: 50px; height: 2px; background: var(--royal-gold); margin: 20px auto; }
+        .location-tag {
+            border: 1px solid var(--royal-gold);
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            border-radius: 50px;
+        }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <p>Welcome to</p>
+        <p style="letter-spacing: 5px; color: var(--deep-gold);">ESTABLISHED 2026</p>
         <h1>Royal Academy School System</h1>
-        <div style="width: 100px; height: 3px; background: var(--royal-gold);"></div>
+        <p style="max-width: 600px; font-weight: 300;">Developing the intellect and character of students in Liberia through world-class instruction.</p>
     </section>
 
-    <section class="founder-section">
-        <div class="founder-img">
-            <img src="https://via.placeholder.com/400x500?text=Founder+Photo" alt="Founder of RASS" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+    <section class="section-padding founder-container">
+        <div class="founder-image-wrapper">
+            <img src="images/founder.jpg" alt="Founder of RASS" onerror="this.src='https://via.placeholder.com/500x600?text=Founder+Portrait'">
         </div>
         <div class="founder-text">
-            <h5 style="color: var(--royal-gold); text-transform: uppercase;">Meet Our Founder</h5>
-            <h2>A Vision for Excellence</h2>
-            <p>Our founder established the <b>Royal Academy School System (RASS)</b> with a singular mission: to provide world-class education in the heart of Monrovia. By combining the best teachers with a nurturing environment, we ensure every student shines as bright as our gold uniform.</p>
+            <h4 style="color: var(--royal-gold);">MESSAGE FROM THE FOUNDER</h4>
+            <h2>Leadership Through Service</h2>
+            <p>At <b>RASS</b>, we didn't just build a school; we built a sanctuary for learning. Our vision for the Kpeh Kpeh Town Community is to raise the next generation of Liberian leaders by providing them with an environment that matches their potential.</p>
         </div>
     </section>
 
-    <section class="gallery-section">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Campus Life & Activities</h2>
+    <section class="section-padding teachers">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem;">The Best Teachers</h2>
+        <div class="grid">
+            <div class="teacher-card">
+                <h3 style="color: var(--deep-gold);">Elite Faculty</h3>
+                <p>Our educators are subject-matter experts with a passion for student success.</p>
+            </div>
+            <div class="teacher-card">
+                <h3 style="color: var(--deep-gold);">Personalized Care</h3>
+                <p>A low teacher-to-student ratio ensures no child is left behind in Kpeh Kpeh Town.</p>
+            </div>
+            <div class="teacher-card">
+                <h3 style="color: var(--deep-gold);">Global Standards</h3>
+                <p>Training our staff in modern pedagogy to compete with international institutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; text-align: center; margin-bottom: 40px;">Campus Life</h2>
         <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Sports+Day" alt="Activity"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Science+Lab" alt="Activity"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Graduation" alt="Activity"></div>
-            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Classroom" alt="Activity"></div>
+            <div class="gallery-item"><img src="images/activity1.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Student+Activity'"></div>
+            <div class="gallery-item"><img src="images/activity2.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=School+Event'"></div>
+            <div class="gallery-item"><img src="images/activity3.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Sports'"></div>
+            <div class="gallery-item"><img src="images/activity4.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Classroom'"></div>
         </div>
     </section>
 
     <footer>
-        <h3>Royal Academy School System</h3>
-        <div class="footer-line"></div>
-        <p>Kpeh Kpeh Town Community, Lower Johnsonville</p>
-        <p>Monrovia, Liberia</p>
-        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 RASS. Built for Excellence.</p>
+        <h2 style="font-family: 'Playfair Display';">RASS</h2>
+        <p>Royal Academy School System</p>
+        <div class="location-tag">
+            📍 Kpeh Kpeh Town Community, Lower Johnsonville, Monrovia, Liberia
+        </div>
+        <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 RASS. All Rights Reserved.</p>
     </footer>
 
 </body>
