@@ -3,178 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RASS | Royal Academy School System</title>
+    <title>Royal Academy School System (RASS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-light: #FFD700;
-            --gold-deep: #B8860B;
-            --rich-black: #050505;
-            --glass: rgba(255, 255, 255, 0.1);
+            --royal-gold: #D4AF37;
+            --soft-gold: #fdf5e6;
+            --deep-gold: #996515;
+            --text-dark: #2c2c2c;
+            --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            color: white;
-            overflow-x: hidden;
-            background: var(--rich-black);
-        }
-
-        /* Animated Gold Mesh Background */
-        .bg-motion {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #3a2d00 0%, #050505 100%);
-        }
-
-        .orb {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: var(--gold-deep);
-            filter: blur(80px);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: move 15s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(100%, 50%); }
-        }
-
-        /* Navigation */
-        nav {
-            padding: 30px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .brand {
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--gold-light);
-            text-transform: uppercase;
+            background-color: var(--soft-gold);
+            color: var(--text-dark);
         }
 
         /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 10%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(212,175,55,0.2) 100%);
+            padding: 20px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(to bottom, #fff, var(--gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--deep-gold);
+            margin-bottom: 10px;
         }
 
-        /* Teacher Cards with Glassmorphism */
-        .faculty-section {
+        .hero p { font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; color: #666; }
+
+        /* Founder Section - Motion Scroll */
+        .founder-section {
             padding: 100px 10%;
-            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            background: var(--white);
         }
 
-        .grid {
+        .founder-img {
+            flex: 1;
+            min-width: 300px;
+            height: 450px;
+            background: url('https://via.placeholder.com/400x500?text=Founder+Image') center/cover;
+            border-radius: 20px;
+            border: 8px solid var(--soft-gold);
+            box-shadow: 20px 20px 0px var(--royal-gold);
+        }
+
+        .founder-text { flex: 1; min-width: 300px; }
+        .founder-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* Gallery - Grid Layout */
+        .gallery-section { padding: 80px 10%; text-align: center; }
+        .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
         }
 
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 40px;
-            border-radius: 24px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+        .gallery-item {
+            height: 250px;
+            background-color: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease;
         }
 
-        .glass-card:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 215, 0, 0.05);
-            border-color: var(--gold-light);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-item:hover { transform: scale(1.03); cursor: pointer; }
 
-        .glass-card h3 {
-            color: var(--gold-light);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Minimalist Footer with Location */
+        /* Footer */
         footer {
-            padding: 80px 10%;
-            background: #000;
-            border-top: 1px solid #222;
+            background: var(--text-dark);
+            color: var(--soft-gold);
+            padding: 60px 10%;
+            text-align: center;
         }
 
-        .location-box {
-            color: #888;
-            font-size: 0.9rem;
-            border-left: 2px solid var(--gold-light);
-            padding-left: 20px;
-        }
-
-        .location-box b { color: var(--gold-light); display: block; margin-bottom: 5px; }
-
+        .footer-line { width: 50px; height: 2px; background: var(--royal-gold); margin: 20px auto; }
     </style>
 </head>
 <body>
 
-    <div class="bg-motion">
-        <div class="orb"></div>
-    </div>
-
-    <nav>
-        <div class="brand">RASS</div>
-        <div style="color:var(--gold-light)">✦ Elite Education</div>
-    </nav>
-
     <section class="hero">
-        <h1>Excellence In Every Uniform.</h1>
-        <p style="max-width: 600px; color: #ccc;">A premier institution dedicated to academic mastery and character building through the finest teaching staff in Liberia.</p>
+        <p>Welcome to</p>
+        <h1>Royal Academy School System</h1>
+        <div style="width: 100px; height: 3px; background: var(--royal-gold);"></div>
     </section>
 
-    <section class="faculty-section">
-        <h2 style="margin-bottom: 50px; text-align: center;">Our World-Class Teachers</h2>
-        <div class="grid">
-            <div class="glass-card">
-                <h3>Masters of Pedagogy</h3>
-                <p>Our teachers aren't just educators; they are mentors trained in the latest global teaching standards.</p>
-            </div>
-            <div class="glass-card">
-                <h3>Innovative Leadership</h3>
-                <p>Equipping students with critical thinking skills that transcend the classroom.</p>
-            </div>
-            <div class="glass-card">
-                <h3>Subject Experts</h3>
-                <p>Specialized instruction in Science, Mathematics, and the Arts by the best minds in the community.</p>
-            </div>
+    <section class="founder-section">
+        <div class="founder-img">
+            <img src="https://via.placeholder.com/400x500?text=Founder+Photo" alt="Founder of RASS" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+        </div>
+        <div class="founder-text">
+            <h5 style="color: var(--royal-gold); text-transform: uppercase;">Meet Our Founder</h5>
+            <h2>A Vision for Excellence</h2>
+            <p>Our founder established the <b>Royal Academy School System (RASS)</b> with a singular mission: to provide world-class education in the heart of Monrovia. By combining the best teachers with a nurturing environment, we ensure every student shines as bright as our gold uniform.</p>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Campus Life & Activities</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Sports+Day" alt="Activity"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Science+Lab" alt="Activity"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Graduation" alt="Activity"></div>
+            <div class="gallery-item"><img src="https://via.placeholder.com/400x300?text=Classroom" alt="Activity"></div>
         </div>
     </section>
 
     <footer>
-        <div class="location-box">
-            <b>ROYAL ACADEMY SCHOOL SYSTEM</b>
-            Kpeh Kpeh Town Community<br>
-            Lower Johnsonville, Monrovia, Liberia
-        </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 RASS. All rights reserved.</p>
+        <h3>Royal Academy School System</h3>
+        <div class="footer-line"></div>
+        <p>Kpeh Kpeh Town Community, Lower Johnsonville</p>
+        <p>Monrovia, Liberia</p>
+        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 RASS. Built for Excellence.</p>
     </footer>
 
 </body>
