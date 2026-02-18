@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Academy School System | RASS</title>
+    <style>
+        /* Modern CSS Variables for the Gold Theme */
+        :root {
+            --gold: #FFD700;
+            --dark-gold: #DAA520;
+            --deep-navy: #0A192F;
+            --white: #ffffff;
+            --light-grey: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--deep-navy);
+            background-color: var(--light-grey);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--gold);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.7)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80'); /* Generic Education Background */
+            background-size: cover;
+            background-position: center;
+            color: var(--gold);
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { color: white; font-size: 1.2rem; max-width: 700px; }
+
+        /* Content Sections */
+        .container { padding: 50px 10%; }
+        
+        .section-title {
+            text-align: center;
+            color: var(--deep-navy);
+            border-bottom: 4px solid var(--gold);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .center-wrapper { text-align: center; }
+
+        /* Teacher Grid */
+        .teacher-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .teacher-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        /* Location Footer */
+        footer {
+            background-color: var(--deep-navy);
+            color: var(--white);
+            padding: 40px 10%;
+            text-align: center;
+        }
+
+        .footer-gold { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">RASS - Liberia</div>
+        <nav>
+            <strong>Excellence in Education</strong>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Royal Academy School System</h1>
+        <p>Empowering the next generation of leaders in Kpeh Kpeh Town, Lower Johnsonville.</p>
+    </section>
+
+    <div class="container">
+        <div class="center-wrapper">
+            <h2 class="section-title">Our Best-in-Class Faculty</h2>
+            <p>At RASS, we believe a school is only as good as its teachers. Our staff is hand-picked for their dedication, local community values, and academic mastery.</p>
+        </div>
+
+        <div class="teacher-grid">
+            <div class="teacher-card">
+                <h3>Principal Leadership</h3>
+                <p>Guided by visionaries committed to the Monrovia educational landscape.</p>
+            </div>
+            <div class="teacher-card">
+                <h3>STEM Specialists</h3>
+                <p>Modern science and math instructors preparing students for a global future.</p>
+            </div>
+            <div class="teacher-card">
+                <h3>Arts & Humanities</h3>
+                <p>Cultivating creativity and cultural pride in every student.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3 class="footer-gold">Royal Academy School System (RASS)</h3>
+        <p>Kpeh Kpeh Town Community, Lower Johnsonville</p>
+        <p>Monrovia, Liberia</p>
+        <hr style="border: 0.5px solid #333; margin: 20px 0;">
+        <p>&copy; 2026 RASS. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
